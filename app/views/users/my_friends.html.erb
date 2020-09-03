@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-9">
+    <h3>Search Friend</h3>
+    <%= form_tag search_friend_path, remote: true, method: :get do |f| %>
+      <div class="form-row">
+        <div class="form-group col-md-9 pr-0 custom-search-input">
+          <%= text_field_tag :search_text, params[:search_text],
+          placeholder: "Search a user", class: "form-control form-control-lg
+          search-input-box" %>
+        </div>
+        <div class="form-group col-md-3 px-0">
+          <%= button_tag type: :submit, class: "btn btn-success search-button" do %>
+            <%= fa_icon 'search 2x' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div id="friend-search-results"></div>
+
+    <% unless @user_friends.blank? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_friends.each_with_index do |f, index| %>
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td>
+              <div class="row">
+                <div class="col-md-8">
+                  <%= f.full_name %>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                  <%= link_to "Visit Profile", user_path(f.id) %>
+                </div>
+              </div>
+            </td>
+            <td><%= link_to "Unfollow", friendship_path(f.id) , method: :delete, data: {confirm: "Are you sure?"}%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      No Friends to Display
+    <% end %>
+  </div>
+</div>

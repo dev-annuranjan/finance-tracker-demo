@@ -1,0 +1,33 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.search-area {
+  padding-top: 50px;
+}
+
+.search-input-box {
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-right: 0px !important;
+}
+
+.search-button {
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.stock-search-result {
+  display: inline-block;
+  padding-right: 0;
+}
+
+.tracked-stocks-table {
+  width: 50%;
+}
+
+.custom-search-input {
+  border: 0px;
+}

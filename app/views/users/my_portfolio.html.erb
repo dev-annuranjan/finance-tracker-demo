@@ -1,0 +1,22 @@
+<h1>My Portfolio</h1>
+<div class="search-area">
+  <h5>Search Stock</h5>
+  <%= form_tag search_stock_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col-7 pr-0">
+        <%= text_field_tag :stock, params[:stock], placeholder: "Search stock ticker", autofocus: true, class: "form-control form-control-lg search-input-box" %>
+      </div>
+      <div class="col-2 px-0">
+        <%= button_tag type: :submit, class: 'btn btn-success search-button' do %>
+          <%= fa_icon 'search 2x' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="stock-search-result"></div>
+
+<% if !@user_stocks.empty? %>
+  <%= render "user_stocks/list"%>
+<% end %>

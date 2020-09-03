@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-9 pr-0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Comapany Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_stocks.each_with_index do |s, i| %>
+          <tr>
+            <td scope="row"><%= i+1 %></td>
+            <th><%= s.ticker %></th>
+            <td><%= s.name %></td>
+            <td><%= s.last_price %></td>
+            <td><%= link_to "Remove", user_stock_path(s.id), data: {method: :delete, confirm: "Are you sure? "},
+              class: "btn btn-sm btn-warning" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

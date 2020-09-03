@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-9 px-0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Comapany Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_stocks.each_with_index do |s, i| %>
+          <tr>
+            <td scope="row"><%= i+1 %></td>
+            <th><%= s.ticker %></th>
+            <td><%= s.name %></td>
+            <td><%= s.last_price %></td>
+            <td>
+              <% if current_user.can_track_stock? s.ticker %>
+                <%= link_to "Add to portfolio",
+                  user_stocks_path(ticker: s.ticker,
+                  name: s.name, last_price: s.last_price),
+                  method: :post, class: "btn btn-success mr-auto" %></td>
+              <% else %>
+                <div class="btn btn-secondary">Already following</div>
+              <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-9 pr-0">
+    <%= render partial: "layouts/messages" %>
+  </div>
+</div>
+<% if @searched_friends.present? %>
+  <div class="row mb-4">
+    <div class="col-12 pr-0">
+      <% @searched_friends.each_with_index do |f| %>
+        <div class="card card-header mb-2">
+          <div class="row">
+            <div class="col-md-7">
+              <span class="mr-auto"><%= f.full_name %>&nbsp;&nbsp;&nbsp;&nbsp;<small><%= f.email %></small></span>
+            </div>
+            <div class="col-md-2">
+              <span class="mr-auto"><%= link_to "View Profile", user_path(f.id),
+                class: "btn btn-success btn-sm" %></span>
+            </div>
+            <div class="col-md-3">
+              <% if current_user.already_a_friend? f.id %>
+                <span class="btn btn-secondary btn-sm">Already following</span>
+              <% else %>
+                <span class="ml-auto"><%= link_to "Add to follow",
+                  friendships_path(friend: { id: f.id, full_name: f.full_name, email: f.email}), method: :post, class: "btn btn-success btn-sm" %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  No result to display
+<% end %>

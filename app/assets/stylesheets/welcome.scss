@@ -1,0 +1,27 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+h1.text-center{
+  color: #17a2b8;
+}
+
+.feature-section {
+  margin-top: 60px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #17a2b8, #4da);
+  box-shadow: 2px 8px 20px #929292, -2px -8px 20px #e4e4e4;
+  padding: 60px 32px;
+  color: white;
+}
+
+.site-features-list {
+  list-style: circle;
+  padding-left: 40px;
+  text-align: left;
+  margin-top: 24px;
+}
+
+.site-features-list li {
+  margin: 8px 0px;
+  font-size: 1.15rem;
+}

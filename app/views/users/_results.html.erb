@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-9 pr-0">
+    <%= render partial: "layouts/messages" %>
+  </div>
+</div>
+<% if @searched_stock %>
+  <div class="row mb-4">
+    <div class="col-9 pr-0">
+      <div class="card card-header">
+        <div class="stock-search-result">
+          <div class="d-inline ml-auto">
+            <strong>Ticker: </strong><%= @searched_stock.ticker %>
+            <strong>Company Name: </strong><%= @searched_stock.name %>
+            <strong>Price: </strong><%= @searched_stock.last_price %>
+          </div>
+          <% if current_user.can_track_stock?(@searched_stock.ticker) %>
+            <%= link_to "Add to portfolio",
+              user_stocks_path(ticker: @searched_stock.ticker,
+              name: @searched_stock.name, last_price: @searched_stock.last_price),
+              method: :post, class: "btn btn-success mr-auto" %>
+          <% elsif current_user.user_is_tracking? @searched_stock.ticker %>
+            <span>Already in your portfolio</span>
+          <% else %>
+            <span>Stock limit reached</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
